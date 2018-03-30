@@ -1,0 +1,19 @@
+---
+- hosts: screen
+    become: true
+    tasks:
+
+    - stat:
+       path: "/etc/sssd/sssd.conf"
+      register: sym
+    - block:
+       - name: Removing screenrc and screen.sh
+         file: path= "/etc/{{ item }}" state=absent
+         with_items:
+          - "/profile.d/screen.sh"
+          - "screenrc"
+
+       - name: Remove yum package
+         yum: name=screen state=absent
+
+      when: ( ansible_distribution == "RedHat" and sym.stat.exists == true )
