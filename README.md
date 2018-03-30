@@ -1,2 +1,2 @@
 # ansible-tower
-For Ansible Playbooks 
+To use this playbook, follow the below steps: 
