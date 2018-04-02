@@ -8,7 +8,7 @@
       register: sym
     - block:
        - name: Removing screenrc and screen.sh
-         file: path= "/etc/{{ item }}" state=absent
+         file: path="/etc/{{ item }}" state=absent
          with_items:
           - "/profile.d/screen.sh"
           - "screenrc"
